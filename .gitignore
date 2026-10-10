@@ -1,0 +1,39 @@
+# React / Vite
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# IDE and operating-system files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs and local coverage
+*.log
+coverage/
+.pytest_cache/
+
+# Generated model artifacts
+loan_model.pkl

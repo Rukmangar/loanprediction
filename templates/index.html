@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LoanPredict | Smarter Loan Decisions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#home" data-page="home"><b>LP</b> Loan<span>Predict</span></a>
+    <nav><a href="#home" data-page="home">Home</a><a href="#features" data-page="features">Features</a><a href="#how-it-works" data-page="how-it-works">How It Works</a><a href="#prediction-tool" data-page="prediction-tool">Loan Prediction</a><a href="#about" data-page="about">About Model</a></nav>
+    <a class="nav-button" href="#prediction-tool" data-page="prediction-tool">Check Eligibility →</a>
+  </header>
+
+  <main>
+    <section id="home" class="page-section hero active">
+      <div class="wrap hero-grid">
+        <div><small class="badge">● Machine Learning Evaluation Interface</small><h1>Make Smarter <em>Loan Decisions</em> With Confidence</h1><p>Experience an intelligent credit evaluation workflow. Enter personal, income, and loan parameters to assess application risk profiles structured for Decision Tree and ensemble classifiers.</p><div class="actions"><a class="button" href="#prediction-tool">Check Loan Eligibility →</a><a class="button light-button" href="#how-it-works">Explore Process</a></div></div>
+        <div class="telemetry"><div class="telemetry-head">◷ ML PIPELINE TELEMETRY <b>REST READY</b></div><div class="metrics"><div><small>Model Architecture</small><strong>Decision Tree / RF</strong></div><div><small>Feature Vector</small><strong>11 Features</strong></div></div><pre>// Sample JSON Payload for /api/predict
+{ "ApplicantIncome": 5400, "Credit_History": 1.0,
+  "LoanAmount": 140, "Property_Area": "Semiurban" }</pre></div>
+      </div>
+    </section>
+
+    <section id="features" class="page-section section"><div class="heading"><small>KEY CAPABILITIES</small><h2>Built for Precision and Clarity</h2><p>A purpose-built frontend engineered with data validation, clean schema definitions, and production resilience.</p></div><div class="wrap cards three"><article><i>▧</i><h3>Simple Application</h3><p>Intuitive financial questionnaire designed according to classic loan dataset benchmarks. Clear sections, smart defaults, and inline validations make data entry effortless.</p></article><article><i>▥</i><h3>Data-Driven Insights</h3><p>Inspect critical credit factors such as income, debt ratios, term lengths, and historic credit records to comprehend predictive classifier decisions.</p></article><article><i>ϟ</i><h3>Quick Results</h3><p>Asynchronous API architecture delivers rapid inference feedback from your Python backend with defensive error boundaries and real-time status indication.</p></article></div></section>
+
+    <section id="how-it-works" class="page-section section pale"><div class="heading"><small>EVALUATION PIPELINE</small><h2>How The Evaluation Works</h2><p>From client-side schema sanitation to machine learning model inference in four simple stages.</p></div><div class="wrap cards four"><article><b class="number">1</b><h3>Provide Credentials</h3><p>Input verified personal demographics, monthly income sources, and requested credit principal parameters.</p></article><article><b class="number">2</b><h3>Validation &amp; Packaging</h3><p>Frontend validates boundaries, maps categorical values, and serializes clean JSON for model feature alignment.</p></article><article><b class="number">3</b><h3>ML Inference</h3><p>Server passes the vector into your trained Decision Tree or Scikit-learn estimator pipeline.</p></article><article><b class="number">4</b><h3>Transparent Outcome</h3><p>Receive genuine server responses complete with decision status, model metadata, and educational caveats.</p></article></div></section>
+
+    <section id="prediction-tool" class="page-section section"><div class="heading"><small>INTERACTIVE EVALUATION</small><h2>Loan Eligibility Prediction Form</h2><p>Submit application parameters to receive an assessment from the configured machine learning endpoint.</p></div><div class="wrap form-card"><div class="form-title"><h3>Applicant &amp; Loan Parameters</h3><p>All inputs are verified against standard banking dataset specifications. <span>● POST /api/predict</span></p></div><form id="loan-form"><h4>1. Personal &amp; Employment Profile</h4><div class="form-grid">
+      <label>Gender<select name="Gender" required><option value="">Select gender</option><option>Male</option><option>Female</option></select></label><label>Marital status<select name="Married" required><option value="">Select status</option><option>Yes</option><option>No</option></select></label><label>Dependents<select name="Dependents" required><option value="">Select dependents</option><option>0</option><option>1</option><option>2</option><option>3+</option></select></label><label>Education<select name="Education" required><option value="">Select education</option><option>Graduate</option><option>Not Graduate</option></select></label><label>Employment type<select name="Self_Employed" required><option value="">Select employment</option><option value="No">Salaried</option><option value="Yes">Self-employed</option></select></label><label>Property area<select name="Property_Area" required><option value="">Select area</option><option>Urban</option><option>Semiurban</option><option>Rural</option></select></label>
+    </div><h4>2. Loan &amp; Property Specifications</h4><div class="form-grid"><label>Applicant income (₹)<input name="ApplicantIncome" type="number" min="0" placeholder="50000" required></label><label>Co-applicant income (₹)<input name="CoapplicantIncome" type="number" min="0" placeholder="15000" required></label><label>Loan amount (₹)<input name="LoanAmount" type="number" min="0" placeholder="1500000" required></label><label>Loan term<select name="Loan_Amount_Term" required><option value="">Select term</option><option>120</option><option>180</option><option>240</option><option>360</option><option>480</option></select></label><label>Credit history<select name="Credit_History" required><option value="">Select history</option><option value="1">Good history</option><option value="0">No / poor history</option></select></label></div><button class="submit" type="submit">Predict Loan Status →</button><p id="message"></p></form></div></section>
+
+    <section id="about" class="page-section section pale"><div class="heading"><small>INTEGRATION ARCHITECTURE</small><h2>Machine Learning Backend Contract</h2><p>Technical specification for connecting Python Flask, FastAPI, or Scikit-Learn pipelines.</p></div><div class="wrap contract"><div><h3>Request Contract</h3><pre>{ "Gender": "Male", "ApplicantIncome": 5400,
+  "LoanAmount": 140, "Credit_History": 1.0 }</pre></div><div><h3>Expected Response</h3><pre>{ "status": "success",
+  "prediction": "Likely Approved",
+  "confidence": 0.84 }</pre></div></div></section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
