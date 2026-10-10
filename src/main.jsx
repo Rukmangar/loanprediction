@@ -16,6 +16,7 @@ const fields = [
   ['Credit history', 'Credit_History', 'select', ['1', '0']]
 ];
 const MIN_LOAN_AMOUNT = 50000;
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
 
 function App() {
   const validPages = ['home', 'features', 'how', 'prediction', 'about'];
@@ -75,7 +76,7 @@ function App() {
       return;
     }
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/predict', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const response = await fetch(`${API_URL}/api/predict`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.message || 'Prediction request failed.');
       setPredictionResult({ prediction: result.prediction, confidence: Math.round(result.confidence * 100), explanation: result.explanation });
