@@ -69,13 +69,15 @@ This creates:
 loan_model.pkl
 ```
 
-Start the Flask API:
+Build the React frontend and start Flask:
 
 ```powershell
+npm install
+npm run build
 python app.py
 ```
 
-The backend runs at:
+Flask serves the built React website and API at:
 
 ```text
 http://127.0.0.1:5000
@@ -93,7 +95,7 @@ Prediction endpoint:
 POST http://127.0.0.1:5000/api/predict
 ```
 
-## Frontend Setup
+## Frontend Development Setup
 
 Open a second PowerShell window:
 
@@ -109,7 +111,18 @@ The frontend runs at:
 http://127.0.0.1:5173
 ```
 
-Run both the frontend and backend at the same time for predictions to work.
+For local frontend development, run Vite and Flask at the same time. The production build is served directly by Flask.
+
+## Render Deployment
+
+Deploy the repository as one Render Web Service:
+
+```text
+Build Command: npm install && npm run build && pip install -r requirements.txt && python train_model.py
+Start Command: gunicorn --bind 0.0.0.0:$PORT app:app
+```
+
+After deployment, open the Render service URL. It serves the updated React interface and the `/api/predict` backend from the same service.
 
 ## Prediction Request
 

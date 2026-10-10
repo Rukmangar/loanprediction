@@ -4,7 +4,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -31,13 +31,23 @@ NUMERIC_FIELDS = {
 }
 MIN_LOAN_AMOUNT = 50_000
 
+DIST_DIR = BASE_DIR / "dist"
+
 app = Flask(__name__)
 CORS(app)
 
 
 @app.get("/")
 def index():
-    return render_template("index.html")
+    return send_from_directory(DIST_DIR, "index.html")
+
+
+@app.get("/<path:path>")
+def frontend(path):
+    requested_file = DIST_DIR / path
+    if requested_file.is_file():
+        return send_from_directory(DIST_DIR, path)
+    return send_from_directory(DIST_DIR, "index.html")
 
 
 def load_artifact():
