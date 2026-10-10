@@ -29,6 +29,7 @@ NUMERIC_FIELDS = {
     "Loan_Amount_Term",
     "Credit_History",
 }
+MIN_LOAN_AMOUNT = 50_000
 
 app = Flask(__name__)
 CORS(app)
@@ -68,6 +69,13 @@ def predict():
             row[field] = float(row[field])
     except (TypeError, ValueError):
         return jsonify({"status": "error", "message": "Numeric fields contain invalid values."}), 400
+    if row["LoanAmount"] < MIN_LOAN_AMOUNT:
+        return jsonify(
+            {
+                "status": "error",
+                "message": f"Loan amount must be at least ₹{MIN_LOAN_AMOUNT:,}.",
+            }
+        ), 400
 
     try:
         artifact = load_artifact()
