@@ -16,7 +16,7 @@ const fields = [
   ['Credit history', 'Credit_History', 'select', ['1', '0']]
 ];
 const MIN_LOAN_AMOUNT = 50000;
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://127.0.0.1:5000' : window.location.origin);
 
 function App() {
   const validPages = ['home', 'features', 'how', 'prediction', 'about'];
